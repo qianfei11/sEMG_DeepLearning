@@ -26,7 +26,7 @@ def convert_to_one_hot(Y, C):
     return Y
 
 # 对数据升维 标签one-hot
-data = np.expand_dims(data, axis=2)
+data = np.expand_dims(data, axis=3)
 label = convert_to_one_hot(label, 16).T
 
 # 划分数据集
@@ -80,28 +80,29 @@ class LossHistory(keras.callbacks.Callback):
         plt.legend(loc='upper right')
         plt.show()
 
-def CNN(input_shape=(200, 1, 6), classes=16): 
+def CNN(input_shape=(200, 6, 1), classes=16): 
     X_input = Input(input_shape)
     X = Conv2D(filters=32, kernel_size=(20, 1), strides=(1, 1), activation='relu', padding='same')(X_input)
-    X = MaxPooling2D((10, 1), strides=(10, 1))(X)
-    X = Conv2D(filters=64, kernel_size=(6, 1), strides=(1, 1), activation='relu', padding='same')(X)
+    X = Conv2D(filters=32, kernel_size=(1, 3), strides=(1, 1), activation='relu', padding='same')(X)
+    X = MaxPooling2D((20, 1), strides=(20, 1))(X)
+    X = Conv2D(filters=64, kernel_size=(3, 1), strides=(1, 1), activation='relu', padding='same')(X)
+    X = Conv2D(filters=64, kernel_size=(1, 3), strides=(1, 1), activation='relu', padding='same')(X)
     X = MaxPooling2D((2, 1), strides=(2, 1))(X)
     X = Conv2D(filters=128, kernel_size=(3, 1), strides=(1, 1), activation='relu',padding='same')(X)
-    X = MaxPooling2D((2, 1), strides=(2, 1))(X)
     X = Flatten(name='flatten')(X)
     X = Dropout(0.5)(X)
     X = Dense(128,activation='relu')(X)
     X = Dropout(0.5)(X)
     X = Dense(classes, activation='softmax')(X)
     model = Model(inputs=X_input, outputs=X)
-    return model
+    return mode
     
 model = CNN(input_shape=(200, 1, 6), classes=16)
 model.summary()
 
 start = time.time()
 
-model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
+model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['acc'])
 history = LossHistory() # 创建一个history实例
 model.fit(X_train, Y_train, epochs=100, validation_data=(X_test, Y_test), batch_size=64, callbacks=[history])
 
