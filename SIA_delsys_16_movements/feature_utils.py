@@ -31,8 +31,8 @@ def featureSSC(data, threshold=10e-7):
     for i in range(channel):
         count = 0
         for j in range(2, length):
-            diff1 = data[j, i]-data[j - 1, i]
-            diff2 = data[j - 1, i]-data[j - 2, i]
+            diff1 = data[j, i] - data[j - 1, i]
+            diff2 = data[j - 1, i] - data[j - 2, i]
             sign = diff1 * diff2
             if sign > 0:
                 if np.abs(diff1) > threshold or np.abs(diff2) > threshold:

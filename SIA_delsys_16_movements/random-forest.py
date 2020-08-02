@@ -36,6 +36,7 @@ print('RF train accuracy: %.2f%%' % (100 * score))
 print('RF test accuracy: %.2f%%' % (100 * accuracy))
 print('training took %fs!' % (time.time() - start_time))
 
+# Support Vector Machine
 SVM = SVC(C=2, kernel='rbf', degree=3, gamma=2)
 SVM.fit(xTraining, yTraining)
 score = SVM.score(xTraining, yTraining)

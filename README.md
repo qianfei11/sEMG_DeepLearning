@@ -113,7 +113,7 @@ SIA_delsys_16_movements数据集：Delsys(2000Hz)采集设备，粘贴6个电极
 
 ## 3-2 深度学习方法
 
-（1）NinaPro DB1：输入图像大小 120 * 10 （120ms * 10channels）
+（1）NinaPro DB1：输入图像大小 12 * 10 （120ms * 10channels）
 
 （2）NinaPro DB2: 输入图像大小 200 * 12 （100ms * 12channels）
 
