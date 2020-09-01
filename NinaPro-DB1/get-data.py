@@ -34,10 +34,6 @@ print(E1_label.shape)
 print(E2_label.shape)
 print(E3_label.shape)
 
-#plt.plot(E1_emg[:16000, 1])
-#plt.plot(E1_label[:16000])
-#plt.show()
-
 def getUsefulData(label, emg):
     idx = []
     for i in range(len(label)):

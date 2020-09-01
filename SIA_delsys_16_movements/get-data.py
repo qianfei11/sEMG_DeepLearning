@@ -179,3 +179,16 @@ with h5py.File('./DB3/data.h5', 'w') as f:
     f.create_dataset('imageData', data=imageData)
     f.create_dataset('imageLabel', data=imageLabel)
 
+def convertToImages(x):
+    yRange = [0, 255]
+    xRange = [-1, 1]
+    y = (x + 1) * 127.5
+    return y
+
+'''
+y = convertToImages(x)
+img = y[:200, :]
+plt.imshow(img, cmap=plt.cm.gray)
+plt.show()
+'''
+

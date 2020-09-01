@@ -12,7 +12,7 @@ EPOCH = 100
 BATCH_SIZE = 512
 LR = 0.05
 
-with h5py.File('./data/data.h5', 'r') as f:
+with h5py.File('./data/DB1_S1_image.h5.bak', 'r') as f:
     imageData = f['imageData'][:]
     #print(imageData.shape)
     imageLabel = f['imageLabel'][:]
